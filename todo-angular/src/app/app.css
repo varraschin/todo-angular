@@ -1,0 +1,55 @@
+.page {
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+    padding: 2rem 1rem;
+}
+
+.todo-card {
+    width: min(100%, 720px);
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    border: 1px solid #e2e8f0;
+    border-radius: 1.25rem;
+    background: #ffffff;
+    box-shadow: 0 20px 60px rgb(15 23 42 / 10%);
+}
+
+header {
+    margin-bottom: 1.5rem;
+}
+
+.eyebrow {
+    margin: 0 0 0.35rem;
+    color: #e11d48;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+h1 {
+    margin: 0;
+    color: #0f172a;
+    font-size: clamp(2rem, 7vw, 3.25rem);
+    line-height: 1;
+}
+
+header p:last-child {
+    margin: 0.8rem 0 0;
+    color: #475569;
+}
+
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1.25rem 0;
+}
+
+.stats span {
+    padding: 0.45rem 0.7rem;
+    border-radius: 999px;
+    background: #fff1f2;
+    color: #9f1239;
+    font-size: 0.9rem;
+}

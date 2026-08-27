@@ -1,0 +1,23 @@
+<main class="page">
+  <section class="todo-card">
+    <header>
+      <p class="eyebrow">Angular</p>
+      <h1>Lista de Tarefas</h1>
+      <p>Organize suas tarefas e matenha os dados salvos no navegador.</p>
+    </header>
+
+    <app-todo-form (todoAdded)="store.add($event)"></app-todo-form>
+
+    <div class="stats" aria-label="Resumo das tarefas">
+      <span>Total: <strong>{{ store.total() }}</strong></span>
+      <span>Pendentes: <strong>{{ store.pending() }}</strong></span>
+      <span>Concluídas: <strong>{{ store.completed() }}</strong></span>
+    </div>
+
+    <app-todo-list
+      [todos]="store.todos()"
+      (todoToggled)="store.toggle($event)"
+      (todoRemoved)="store.remove($event)"
+    />    
+  </section>
+</main>

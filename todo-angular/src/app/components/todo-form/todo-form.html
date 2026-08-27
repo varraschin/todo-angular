@@ -1,0 +1,12 @@
+<form class="todo-form" (ngSubmit)="submit()">
+    <label class="sr-only" for="todo-title">Nova tarefa</label>
+    <input
+        id="todo-title"
+        name="title"
+        type="text"
+        placeholder="Digite uma tarefa"
+        autocomplete="off"
+        [(ngModel)]="title"
+    />
+    <button type="submit">Adicionar</button>
+</form>
