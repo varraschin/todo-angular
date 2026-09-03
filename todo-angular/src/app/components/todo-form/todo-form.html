@@ -1,12 +1,46 @@
 <form class="todo-form" (ngSubmit)="submit()">
-    <label class="sr-only" for="todo-title">Nova tarefa</label>
+  <div class="field title-field">
+    <label for="todo-title">Tarefa</label>
     <input
-        id="todo-title"
-        name="title"
-        type="text"
-        placeholder="Digite uma tarefa"
-        autocomplete="off"
-        [(ngModel)]="title"
+      id="todo-title"
+      name="title"
+      type="text"
+      placeholder="Digite uma tarefa"
+      autocomplete="off"
+      required
+      [(ngModel)]="title"
     />
-    <button type="submit">Adicionar</button>
+  </div>
+
+  <div class="field">
+    <label for="todo-date">Data</label>
+    <input
+      id="todo-date"
+      name="date"
+      type="date"
+      required
+      [(ngModel)]="date"
+    />
+  </div>
+
+  <div class="field">
+    <label for="todo-priority">Prioridade</label>
+    <select
+      id="todo-priority"
+      name="priority"
+      [(ngModel)]="priority"
+    >
+      <option value="baixa">Baixa</option>
+      <option value="media">Média</option>
+      <option value="alta">Alta</option>
+    </select>
+  </div>
+
+  <button
+    class="add-button"
+    type="submit"
+    [disabled]="title.trim().length === 0 || !date"
+  >
+    Adicionar
+  </button>
 </form>

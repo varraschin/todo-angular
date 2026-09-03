@@ -1,15 +1,76 @@
 <li class="todo-item" [class.completed]="todo().completed">
-    <label>
-        <input 
-            type="checkbox"
-            [checked]="todo().completed"
-            (change)="todoToggled.emit(todo().id)"
-        />
-        <span>{{ todo().title }}</span>
+  <div class="todo-main">
+    <label class="check-area">
+      <input
+        type="checkbox"
+        [checked]="todo().completed"
+        (change)="todoToggled.emit(todo().id)"
+      />
+      <span class="sr-only">Alterar situação de {{ todo().title }}</span>
     </label>
-    <button
-        type="submit"
+
+    <div class="todo-content">
+      @if (editing()) {
+        <form class="edit-form" (ngSubmit)="saveEdit()">
+          <label class="sr-only" for="edit-title-{{ todo().id }}">
+            Editar título
+          </label>
+
+          <input
+            id="edit-title-{{ todo().id }}"
+            name="editTitle"
+            type="text"
+            [(ngModel)]="editTitle"
+            autocomplete="off"
+          />
+
+          <div class="edit-actions">
+            <button
+              class="save-button"
+              type="submit"
+              [disabled]="editTitle.trim().length === 0"
+            >Salvar</button>
+
+            <button
+              class="cancel-button"
+              type="button"
+              (click)="cancelEdit()"
+            >Cancelar</button>
+          </div>
+        </form>
+      } @else {
+        <span class="todo-title">{{ todo().title }}</span>
+
+        <div class="todo-meta">
+          <span class="date-badge">Data: {{ formatDate(todo().date) }}</span>
+
+          <span
+            class="priority-badge"
+            [class.priority-low]="todo().priority === 'baixa'"
+            [class.priority-medium]="todo().priority === 'media'"
+            [class.priority-high]="todo().priority === 'alta'"
+          >
+            Prioridade: {{ priorityLabel(todo().priority) }}
+          </span>
+        </div>
+      }
+    </div>
+  </div>
+
+  @if (!editing()) {
+    <div class="item-actions">
+      <button class="edit-button" type="button" (click)="startEdit()">
+        Editar
+      </button>
+
+      <button
+        class="delete-button"
+        type="button"
         [attr.aria-label]="'Excluir a tarefa ' + todo().title"
         (click)="todoRemoved.emit(todo().id)"
-    >Excluir</button>
+      >
+        Excluir
+      </button>
+    </div>
+  }
 </li>
